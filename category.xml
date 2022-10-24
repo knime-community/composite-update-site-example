@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+<!--Category to group features in-->
+   <category-def name="example" label="KNIME Example Extensions Category">
+      <description>
+      	This category contains KNIME extensions grouped.
+      </description>
+   </category-def>
+
+<!--features to put into the category -->
+   <feature id="org.knime.features.ext.poi" version="0.0.0">
+      <category name="example"/>
+   </feature>
+   <feature id="com.continental.knime.feature" version="0.0.0">
+      <category name="example"/>
+   </feature>
+</site>

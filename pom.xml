@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>org.knime.community</groupId>
+	<artifactId>composite.updatesite.example</artifactId>
+	<version>1.0.0</version>
+	<name>Composite update site example</name>
+
+	<properties>
+		<tycho.version>2.7.5</tycho.version>
+		<knime.version>4.6</knime.version>
+	</properties>
+
+	<packaging>eclipse-repository</packaging>
+
+	<repositories>
+	<!-- Enter update sites that provide the plugins you want to distribute -->
+		<repository>
+			<id>p2-knime-update-site</id>
+			<layout>p2</layout>
+			<url>https://update.knime.com/analytics-platform/${knime.version}</url>
+		</repository>
+		<repository>
+			<id>community</id>
+			<layout>p2</layout>
+			<url>https://update.knime.com/community-contributions/trusted/${knime.version}</url>
+		</repository>
+	</repositories>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-maven-plugin</artifactId>
+				<version>${tycho.version}</version>
+				<extensions>true</extensions>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-packaging-plugin</artifactId>
+				<version>${tycho.version}</version>
+			</plugin>
+			<!-- <plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-p2-repository-plugin</artifactId>
+				<version>${tycho.version}</version>
+				<configuration>
+					<finalName>org.knime.update.partner_${knime.version}.0</finalName>
+					<skipArchive>false</skipArchive>
+				</configuration>
+			</plugin> -->
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-p2-director-plugin</artifactId>
+				<version>${tycho.version}</version>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-p2-plugin</artifactId>
+				<version>${tycho.version}</version>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>target-platform-configuration</artifactId>
+				<version>${tycho.version}</version>
+				<configuration>
+					<environments>
+						<environment>
+							<os>linux</os>
+							<ws>gtk</ws>
+							<arch>x86_64</arch>
+						</environment>
+						<environment>
+							<os>win32</os>
+							<ws>win32</ws>
+							<arch>x86_64</arch>
+						</environment>
+						<environment>
+							<os>macosx</os>
+							<ws>cocoa</ws>
+							<arch>x86_64</arch>
+						</environment>
+					</environments>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
